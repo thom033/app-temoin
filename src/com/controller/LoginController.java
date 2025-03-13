@@ -1,6 +1,7 @@
 package com.controller;
 
 import com.annotation.AnnotationController;
+import com.annotation.Get;
 import com.annotation.MappingAnnotation;
 import com.annotation.ParamAnnotation;
 import com.utilFrame.ModelView;
@@ -17,9 +18,9 @@ public class LoginController {
         this.session = session;
     }
 
-    @MappingAnnotation(url = "/login")
+    @MappingAnnotation(url = "/loginForm")
     public ModelView showLoginForm() {
-        ModelView mv = new ModelView("login.jsp");
+        ModelView mv = new ModelView("index.jsp");
         return mv;
     }
 
@@ -43,14 +44,6 @@ public class LoginController {
     public ModelView logout() {
         session.delete("user");
         ModelView mv = new ModelView("login.jsp");
-        return mv;
-    }
-
-    @MappingAnnotation(url = "/checkSession")
-    public ModelView checkSession(@ParamAnnotation("username") String username) {
-        User user = UserStore.getUserByName(username);
-        session.add("user", user);
-        ModelView mv = new ModelView("check_session.jsp");
         return mv;
     }
 }
